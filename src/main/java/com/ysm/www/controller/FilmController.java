@@ -1,16 +1,17 @@
 package com.ysm.www.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ysm.www.entity.bo.FilmConditionBo;
 import com.ysm.www.entity.po.Film;
 import com.ysm.www.entity.result.CommonResult;
 import com.ysm.www.service.FilmService;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.parameters.P;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.time.LocalDate;
 
 /**
  * @Description: TODO
@@ -30,5 +31,11 @@ public class FilmController {
     @GetMapping("/listFilm")
     public CommonResult<Page<Film>> listFilmByPage(@RequestParam Integer pageNum){
         return CommonResult.operateSuccess(filmService.listFilmByPage(pageNum));
+    }
+
+    @PreAuthorize("hasAnyAuthority('listFilmByCond')")
+    @PostMapping("/listFilmByCond")
+    public CommonResult<Page<Film>> listFilmByPageAndCondition(@Validated @RequestBody FilmConditionBo filmConditionBo){
+        return CommonResult.operateSuccess(filmService.listFilmByCond(filmConditionBo));
     }
 }

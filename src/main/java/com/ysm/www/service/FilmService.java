@@ -2,6 +2,7 @@ package com.ysm.www.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ysm.www.entity.bo.FilmConditionBo;
 import com.ysm.www.entity.po.Film;
 
 
@@ -13,4 +14,6 @@ import com.ysm.www.entity.po.Film;
  **/
 public interface FilmService extends IService<Film> {
     Page<Film> listFilmByPage(Integer pageNum);
+
+    Page<Film> listFilmByCond(FilmConditionBo filmConditionBo);
 }
