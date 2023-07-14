@@ -55,12 +55,17 @@ public class CustomAuthenticationFilter extends BasicAuthenticationFilter {
 
             if (Objects.nonNull(token)) {
                 String userId = dataStore.get(SecurityConstant.TOKEN_PREFIX + token);
+
+
                 if (StringUtils.isNotEmpty(userId)) {
                     //验证成功
                     ArrayList<GrantedAuthority> authorities = new ArrayList<>();
 
                     String data = dataStore.get(SecurityConstant.INFORMATION_PREFIX + userId);
                     String permissionStore = dataStore.get(SecurityConstant.PERMISSION_PREFIX + userId);
+
+
+
                     List<String> permissions = JSONArray.parseArray(permissionStore, String.class);
                     if (Objects.nonNull(permissions) && permissions.size() > 0) {
                         for (String permission : permissions) {
