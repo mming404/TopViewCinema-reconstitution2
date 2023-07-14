@@ -9,23 +9,21 @@ import lombok.Data;
 import lombok.ToString;
 
 /**
- * @Description: TODO  权限
+ * @Description: TODO
  * @Author MiSinG
  * @Date 2023/7/14
  * @Version V1.0
  **/
+
 @Data
 @AllArgsConstructor
-@TableName("permission")
+@TableName("cinema")
 @ToString
-public class Permission {
+public class Cinema {
 
     @TableId(value = "id",type = IdType.AUTO)
     private Integer id;
 
-    @TableField("permission_name")
-    private String permissionName;
-
-    @TableField("permission_detail")
-    private String permissionDetail;
+    @TableField("cinema_name")
+    private String cinemaName;
 }
