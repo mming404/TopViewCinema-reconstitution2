@@ -46,4 +46,6 @@ public interface IDataStore {
      * @param key 键
      */
     void increment(String key);
+
+    Long getExpireTime(String key);
 }

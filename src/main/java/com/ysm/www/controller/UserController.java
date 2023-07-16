@@ -1,8 +1,8 @@
 package com.ysm.www.controller;
 
-import com.ysm.www.auth.dto.SignResult;
 import com.ysm.www.entity.bo.LoginBo;
 import com.ysm.www.entity.result.CommonResult;
+import com.ysm.www.entity.vo.LoginVo;
 import com.ysm.www.service.UserService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +27,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/login")
-    CommonResult<SignResult> login(@Validated @RequestBody LoginBo loginBo){
+    CommonResult<LoginVo> login(@Validated @RequestBody LoginBo loginBo){
         return CommonResult.operateSuccess(userService.userLogin(loginBo));
     }
 }

@@ -1,6 +1,6 @@
 package com.ysm.www.auth.handler;
 
-import com.ysm.www.auth.constant.SecurityConstant;
+import com.ysm.www.entity.result.CommonResult;
 import com.ysm.www.entity.result.ResultUtil;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
@@ -11,24 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static com.ysm.www.auth.constant.SecurityConstant.ACCESS_DENY;
+
 /**
- * 登陆错误
- *
- * @author Albumen
- */
+ * @Description: TODO  用户权限不足访问拒绝处理器
+ * @Author MiSinG
+ * @Date 2023/7/16
+ * @Version V1.0
+ **/
 @Component
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
-    /**
-     * Handles an access denied failure.
-     *
-     * @param request               that resulted in an <code>AccessDeniedException</code>
-     * @param response              so that the user agent can be advised of the failure
-     * @param accessDeniedException that caused the invocation
-     * @throws IOException      in the event of an IOException
-     * @throws ServletException in the event of a ServletException
-     */
     @Override
-    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
-        ResultUtil.printCode(response, SecurityConstant.ACCESS_DENY, 401);
+    public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {
+        ResultUtil.printCode(httpServletResponse, ACCESS_DENY, 401);
     }
 }

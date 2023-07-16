@@ -15,20 +15,20 @@ import java.util.function.IntPredicate;
  **/
 @SpringBootApplication
 public class CinemaApplication {
-//    public static void main(String[] args) {
-//        SpringApplication.run(CinemaApplication.class,args);
-//    }
-
     public static void main(String[] args) {
-
-//        System.out.println(calculateNum(((left, right) -> left + right)));
-
-//        printNum(value -> value%2==1);
-
-        Integer integer = typeConver(s -> Integer.valueOf(s));
-        System.out.println("integer = " + integer);
-
+        SpringApplication.run(CinemaApplication.class,args);
     }
+
+//    public static void main(String[] args) {
+//
+////        System.out.println(calculateNum(((left, right) -> left + right)));
+//
+////        printNum(value -> value%2==1);
+//
+//        Integer integer = typeConver(s -> Integer.valueOf(s));
+//        System.out.println("integer = " + integer);
+//
+//    }
     public static <R> R typeConver(Function<String,R> function){
         String str = "1234";
         R result = function.apply(str);

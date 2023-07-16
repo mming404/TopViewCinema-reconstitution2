@@ -48,4 +48,9 @@ public class CustomDataStore implements IDataStore {
     public void increment(String key) {
         redisTemplate.opsForValue().increment(key);
     }
+
+    @Override
+    public Long getExpireTime(String key) {
+        return redisTemplate.opsForValue().getOperations().getExpire(key);
+    }
 }
