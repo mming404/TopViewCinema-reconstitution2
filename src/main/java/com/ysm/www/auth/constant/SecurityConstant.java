@@ -1,10 +1,10 @@
 package com.ysm.www.auth.constant;
 
 import com.ysm.www.common.result.CommonResult;
+import com.ysm.www.common.result.RespResult;
 
 public class SecurityConstant {
-    public static final CommonResult<String> ACCESS_DENY =
-            new CommonResult<String>().setSuccess(false).setMessage("无权限访问此接口").setCode(401);
+    public static final RespResult<String> ACCESS_DENY = RespResult.failed("无权访问此接口");
 
     public static final String AUTHORIZATION_HEADER = "Authorization";
     public static final String STATE_PREFIX = "Bearer ";

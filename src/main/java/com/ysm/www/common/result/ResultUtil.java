@@ -11,7 +11,7 @@ import java.io.PrintWriter;
  */
 public class ResultUtil {
 
-    public static <T> void printCode(HttpServletResponse response, CommonResult<T> result, Integer statusCode) throws IOException {
+    public static <T> void printCode(HttpServletResponse response, RespResult<T> result, Integer statusCode) throws IOException {
         response.setContentType("application/json; charset=utf-8");
         response.setStatus(statusCode);
         PrintWriter writer = response.getWriter();

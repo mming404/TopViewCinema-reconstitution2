@@ -48,4 +48,6 @@ public interface IDataStore {
     void increment(String key);
 
     Long getExpireTime(String key);
+
+//    long getLastTokenTime(String key,Long currentTime);
 }

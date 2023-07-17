@@ -47,7 +47,7 @@ public class CustomAuthenticationFilter extends BasicAuthenticationFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         String jwt = request.getHeader(AUTHORIZATION_HEADER);
-
+        System.out.println(request.getRemoteAddr());
         // 判断是否使用Session获取Token
         if (StringUtils.isEmpty(jwt) && false) {
             jwt = (String) request.getSession().getAttribute(AUTHORIZATION_HEADER);

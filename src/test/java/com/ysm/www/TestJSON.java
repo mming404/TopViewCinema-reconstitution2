@@ -1,13 +1,17 @@
 package com.ysm.www;
 
 import com.alibaba.fastjson.JSONArray;
+import com.ysm.www.auth.limiter.IPAccessLimiter;
 import com.ysm.www.util.IDataStore;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @Description: TODO
@@ -21,20 +25,23 @@ public class TestJSON {
     @Resource
     private IDataStore  dataStore;
 
-    @Test
-    void arrJSON(){
-        ArrayList<String> stringArrayList = new ArrayList<>();
-//        stringArrayList.add("/listFilm");
-//
-//        String jsonString = JSONArray.toJSONString(stringArrayList);
-//        System.out.println(jsonString);
-        String jsonString = "[\"listFilm\"]";
-        dataStore.put("test",jsonString,1000*60*5);
-        String redisStr = dataStore.get("test");
-        System.out.println(redisStr);
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
 
-        List<String> strings = JSONArray.parseArray(redisStr, String.class);
-        strings.forEach(System.out::println);
+
+
+
+    @Test
+    void testLimiter() throws InterruptedException {
+        IPAccessLimiter limiter = new IPAccessLimiter(stringRedisTemplate);
+        for (int i = 0; i < 100; i++) {
+            Thread.sleep(1000);
+            if (limiter.ifAllowed("123.123.123.123")){
+                System.out.println("ip访问通过");
+            }else {
+                System.out.println("ip访问被拒绝");
+            }
+        }
     }
 
 }

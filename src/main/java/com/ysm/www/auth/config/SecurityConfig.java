@@ -3,6 +3,7 @@ package com.ysm.www.auth.config;
 import com.ysm.www.auth.handler.CustomAccessDeniedHandler;
 import com.ysm.www.auth.handler.CustomAuthenticationFilter;
 import com.ysm.www.auth.handler.CustomHttp401AuthenticationEntryPoint;
+import com.ysm.www.auth.handler.IPAccessLimiterFilter;
 import com.ysm.www.auth.property.SecurityProperty;
 import com.ysm.www.auth.util.JwtUtil;
 import com.ysm.www.util.IDataStore;
@@ -51,6 +52,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private SecurityProperty securityProperty;
 
 
+    @Resource
+    private IPAccessLimiterFilter ipAccessLimiterFilter;
+
+
 
     @Override
     public void configure(WebSecurity web) {
@@ -83,7 +88,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 //添加自定义过滤器
                 .and()
-                .addFilter(new CustomAuthenticationFilter(authenticationManager(),dataStore,jwtUtil));
+                .addFilter(new CustomAuthenticationFilter(authenticationManager(),dataStore,jwtUtil))
+                .addFilterBefore(ipAccessLimiterFilter, CustomAuthenticationFilter.class);
 
     }
 }

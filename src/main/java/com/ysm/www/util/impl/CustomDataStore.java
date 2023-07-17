@@ -2,6 +2,7 @@ package com.ysm.www.util.impl;
 
 
 import com.ysm.www.util.IDataStore;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 import java.util.concurrent.TimeUnit;
@@ -17,40 +18,48 @@ import java.util.concurrent.TimeUnit;
  */
 @Component
 public class CustomDataStore implements IDataStore {
-    private StringRedisTemplate redisTemplate;
+    private StringRedisTemplate stringRedisTemplate;
+
+    private RedisTemplate<String,String> redisTemplate;
 
     public CustomDataStore(StringRedisTemplate redisTemplate) {
-        this.redisTemplate = redisTemplate;
+        this.stringRedisTemplate = redisTemplate;
     }
 
     @Override
     public boolean put(String key, String value, long expire) {
-        redisTemplate.opsForValue().set(key, value, expire, TimeUnit.MILLISECONDS);
+        stringRedisTemplate.opsForValue().set(key, value, expire, TimeUnit.MILLISECONDS);
         return true;
     }
 
     @Override
     public boolean remove(String key) {
-        return Boolean.TRUE.equals(redisTemplate.delete(key));
+        return Boolean.TRUE.equals(stringRedisTemplate.delete(key));
     }
 
     @Override
     public boolean refresh(String key, long expire) {
-        return Boolean.TRUE.equals(redisTemplate.expire(key, expire, TimeUnit.MILLISECONDS));
+        return Boolean.TRUE.equals(stringRedisTemplate.expire(key, expire, TimeUnit.MILLISECONDS));
     }
 
     @Override
     public String get(String key) {
-        return redisTemplate.opsForValue().get(key);
+        return stringRedisTemplate.opsForValue().get(key);
     }
 
     @Override
     public void increment(String key) {
-        redisTemplate.opsForValue().increment(key);
+        stringRedisTemplate.opsForValue().increment(key);
     }
 
     @Override
     public Long getExpireTime(String key) {
-        return redisTemplate.opsForValue().getOperations().getExpire(key);
+        return stringRedisTemplate.opsForValue().getOperations().getExpire(key);
     }
+
+//    @Override
+//    public long getLastTokenTime(String key, Long currentTime) {
+//        long lastTokenTime = (long) stringRedisTemplate.opsForValue().getOrDefault(key, currentTime);
+//        stringRedisTemplate.opsForValue().
+//    }
 }
