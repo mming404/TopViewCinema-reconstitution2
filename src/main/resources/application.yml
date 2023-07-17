@@ -55,3 +55,16 @@ mybatis:
     #配置开启驼峰映射
     map-underscore-to-camel-case: true
 
+
+#配置权限管理路径
+security:
+  url:
+    allowed:
+      /api/user/login,
+      /api/film/listFilm
+    need:
+      /api/**
+    ignore:
+      /druid/**
+
+

@@ -3,6 +3,7 @@ package com.ysm.www.auth.config;
 import com.ysm.www.auth.handler.CustomAccessDeniedHandler;
 import com.ysm.www.auth.handler.CustomAuthenticationFilter;
 import com.ysm.www.auth.handler.CustomHttp401AuthenticationEntryPoint;
+import com.ysm.www.auth.property.SecurityProperty;
 import com.ysm.www.auth.util.JwtUtil;
 import com.ysm.www.util.IDataStore;
 import lombok.AllArgsConstructor;
@@ -46,24 +47,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private CustomHttp401AuthenticationEntryPoint customHttp401AuthenticationEntryPoint;
 
 
-    static final String[] URL_ALLOW  = {
-            "/api/user/login**",
-    };
-
-
-    static final String[] URL_NEED  = {
-            "/api/**",
-    };
-
-    static final String[] URL_IGNORE  = {
-            "/druid/**",
-    };
+    @Resource
+    private SecurityProperty securityProperty;
+//    static final String[] URL_ALLOW  = {
+//            "/api/user/login**",
+//    };
+//
+//
+//    static final String[] URL_NEED  = {
+//            "/api/**",
+//    };
+//
+//    static final String[] URL_IGNORE  = {
+//            "/druid/**",
+//    };
 
 
     @Override
     public void configure(WebSecurity web) {
         WebSecurity.IgnoredRequestConfigurer ignoring = web.ignoring();
-        Arrays.stream(URL_IGNORE).forEach(ignoring::antMatchers);
+        Arrays.stream(securityProperty.getIgnore()).forEach(ignoring::antMatchers);
     }
 
     @Override
@@ -80,8 +83,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //拦截规则
                 .and()
                 .authorizeRequests()
-                .antMatchers(URL_ALLOW).permitAll()
-                .antMatchers(URL_NEED).authenticated()
+                .antMatchers(securityProperty.getAllowed()).permitAll()
+                .antMatchers(securityProperty.getNeed()).authenticated()
 
                 //添加异常处理器
                 .and()
