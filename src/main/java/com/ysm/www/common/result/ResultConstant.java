@@ -1,4 +1,4 @@
-package com.ysm.www.entity.result;
+package com.ysm.www.common.result;
 
 /**
  * @author yongPhone

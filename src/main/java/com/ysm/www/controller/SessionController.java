@@ -1,7 +1,7 @@
 package com.ysm.www.controller;
 
 import com.ysm.www.entity.po.Session;
-import com.ysm.www.entity.result.CommonResult;
+import com.ysm.www.common.result.CommonResult;
 import com.ysm.www.service.SessionService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;

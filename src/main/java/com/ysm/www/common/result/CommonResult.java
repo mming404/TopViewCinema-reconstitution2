@@ -1,10 +1,10 @@
-package com.ysm.www.entity.result;
+package com.ysm.www.common.result;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import static com.ysm.www.entity.result.ResultConstant.*;
+import static com.ysm.www.common.result.ResultConstant.*;
 
 
 /**

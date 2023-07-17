@@ -1,6 +1,6 @@
 package com.ysm.www.auth.constant;
 
-import com.ysm.www.entity.result.CommonResult;
+import com.ysm.www.common.result.CommonResult;
 
 public class SecurityConstant {
     public static final CommonResult<String> ACCESS_DENY =

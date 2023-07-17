@@ -1,7 +1,7 @@
 package com.ysm.www.controller;
 
 import com.ysm.www.entity.bo.LoginBo;
-import com.ysm.www.entity.result.CommonResult;
+import com.ysm.www.common.result.CommonResult;
 import com.ysm.www.entity.vo.LoginVo;
 import com.ysm.www.service.UserService;
 import org.springframework.validation.annotation.Validated;

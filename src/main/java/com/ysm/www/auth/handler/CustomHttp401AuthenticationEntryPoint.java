@@ -1,7 +1,6 @@
 package com.ysm.www.auth.handler;
 
-import com.ysm.www.entity.result.CommonResult;
-import com.ysm.www.entity.result.ResultUtil;
+import com.ysm.www.common.result.ResultUtil;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;

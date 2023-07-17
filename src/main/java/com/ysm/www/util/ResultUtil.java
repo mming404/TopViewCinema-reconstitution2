@@ -1,7 +1,7 @@
 package com.ysm.www.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ysm.www.entity.result.CommonResult;
+import com.ysm.www.common.result.CommonResult;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

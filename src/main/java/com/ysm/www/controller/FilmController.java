@@ -3,15 +3,13 @@ package com.ysm.www.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ysm.www.entity.bo.FilmConditionBo;
 import com.ysm.www.entity.po.Film;
-import com.ysm.www.entity.result.CommonResult;
+import com.ysm.www.common.result.CommonResult;
 import com.ysm.www.service.FilmService;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.parameters.P;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.time.LocalDate;
 
 /**
  * @Description: TODO

@@ -49,18 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Resource
     private SecurityProperty securityProperty;
-//    static final String[] URL_ALLOW  = {
-//            "/api/user/login**",
-//    };
-//
-//
-//    static final String[] URL_NEED  = {
-//            "/api/**",
-//    };
-//
-//    static final String[] URL_IGNORE  = {
-//            "/druid/**",
-//    };
+
 
 
     @Override
