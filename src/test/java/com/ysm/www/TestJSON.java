@@ -27,21 +27,21 @@ public class TestJSON {
 
     @Resource
     private StringRedisTemplate stringRedisTemplate;
-
-
-
-
-    @Test
-    void testLimiter() throws InterruptedException {
-        IPAccessLimiter limiter = new IPAccessLimiter(stringRedisTemplate);
-        for (int i = 0; i < 100; i++) {
-            Thread.sleep(1000);
-            if (limiter.ifAllowed("123.123.123.123")){
-                System.out.println("ip访问通过");
-            }else {
-                System.out.println("ip访问被拒绝");
-            }
-        }
-    }
+//
+//
+//
+//
+//    @Test
+//    void testLimiter() throws InterruptedException {
+//        IPAccessLimiter limiter = new IPAccessLimiter(stringRedisTemplate);
+//        for (int i = 0; i < 100; i++) {
+//            Thread.sleep(1000);
+//            if (limiter.ifAllowed("123.123.123.123")){
+//                System.out.println("ip访问通过");
+//            }else {
+//                System.out.println("ip访问被拒绝");
+//            }
+//        }
+//    }
 
 }

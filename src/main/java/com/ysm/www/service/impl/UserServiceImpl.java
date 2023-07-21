@@ -11,6 +11,7 @@ import com.ysm.www.entity.vo.LoginVo;
 import com.ysm.www.mapper.*;
 import com.ysm.www.service.UserService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
@@ -46,6 +47,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private SecurityUtil securityUtil;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public LoginVo userLogin(LoginBo loginBo) {
         User user = userMapper.getByName(loginBo.getUsername());
         Assert.notNull(user, "查无此人");

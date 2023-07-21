@@ -26,7 +26,7 @@ public class IPAccessLimiter {
     private StringRedisTemplate redisTemplate;
     private long windowSizeInMilliseconds = 60 * 1000L;
 
-    private long maxCount = 40;
+    private long maxCount = 60;
 
     public IPAccessLimiter(StringRedisTemplate redisTemplate) {
         this.redisTemplate = redisTemplate;

@@ -67,4 +67,7 @@ security:
     ignore:
       /druid/**
 
+#同一个ip每分钟最大访问次数
+limit:
+  max-count: 60
 

@@ -49,7 +49,6 @@ public class SecurityUtil {
 
     /**
      * service 登录方法
-     *
      * @param userId
      * @param permissions
      * @return  有前缀的token
@@ -64,7 +63,7 @@ public class SecurityUtil {
 
         result = result && dataStore.put(INFORMATION_PREFIX + userId, JSON.toJSONString(userDate), TOKEN_2H_TIME);
 
-        //这个key当token过期时用来刷新token，时效:7days
+        //这个key当token过期时用来刷新token，时效:7days    续约token
         result = result && dataStore.put(TOKEN_REFRESH_PREFIX + jwt, userId.toString(), TOKEN_7D_TIME);
 
         return result ? STATE_PREFIX + jwt : null;
@@ -72,7 +71,7 @@ public class SecurityUtil {
 
 
     /**
-     * 刷新token
+     * 刷新token   7天内都可以刷新，过后必须登录
      *
      * @param oldToken 没有前缀的token
      * @return newToken 没有前缀
@@ -101,8 +100,7 @@ public class SecurityUtil {
         Long expireTime = dataStore.getExpireTime(TOKEN_REFRESH_PREFIX + oldToken);
 
 
-        boolean result;
-        result = dataStore.put(TOKEN_PREFIX + newToken, userId, TOKEN_2H_TIME);
+        boolean result = dataStore.put(TOKEN_PREFIX + uuid, userId, TOKEN_2H_TIME);
         //创建新的refreshToken
         result = result && dataStore.put(TOKEN_REFRESH_PREFIX + newToken, userId, expireTime);
         //删除旧的refreshToken，防止有人用旧的(已过期)的token再次刷新

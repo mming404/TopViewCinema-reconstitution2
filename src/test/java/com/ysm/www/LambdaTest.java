@@ -29,13 +29,13 @@ public class LambdaTest {
 //
 //        new Thread(() -> System.out.println("TopView")).start();
 
-        int[] arr = {1,2,4,4,5,6,7,2};
-        List<String> stringList = Arrays.stream(arr)
-                .distinct()
-                .filter(value -> value % 2 == 0)
-                .filter(value -> value < 5)
-                .mapToObj(operand -> String.valueOf(operand))
-                .collect(Collectors.toList());
-        stringList.forEach(s -> System.out.println(s));
+//        int[] arr = {1,2,4,4,5,6,7,2};
+//        List<String> stringList = Arrays.stream(arr)
+//                .distinct()
+//                .filter(value -> value % 2 == 0)
+//                .filter(value -> value < 5)
+//                .mapToObj(operand -> String.valueOf(operand))
+//                .collect(Collectors.toList());
+//        stringList.forEach(s -> System.out.println(s));
     }
 }
