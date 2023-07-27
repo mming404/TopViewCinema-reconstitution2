@@ -34,8 +34,12 @@ public class SecurityUtil {
 
     private JwtUtil jwtUtil;
 
+    /**
+     * 静态工具方法 用于从security上下文中获取保存的用户id
+     * 不用去数据库查
+     * @return 用户id
+     */
     public static Integer getUserId() {
-        //从上下文中获取 userid
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (Objects.nonNull(authentication)) {
             Object principal = authentication.getPrincipal();
@@ -49,8 +53,8 @@ public class SecurityUtil {
 
     /**
      * service 登录方法
-     * @param userId
-     * @param permissions
+     * @param userId 用户id
+     * @param permissions 用户权限名列表
      * @return  有前缀的token
      */
     public String login(Integer userId, List<String> permissions, User userDate) {

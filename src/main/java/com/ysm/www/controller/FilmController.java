@@ -1,6 +1,7 @@
 package com.ysm.www.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ysm.www.auth.util.SecurityUtil;
 import com.ysm.www.entity.bo.FilmConditionBo;
 import com.ysm.www.entity.po.Film;
 import com.ysm.www.common.result.CommonResult;
@@ -28,6 +29,7 @@ public class FilmController {
     @PreAuthorize("hasAnyAuthority('listFilm')")
     @GetMapping("/listFilm")
     public CommonResult<Page<Film>> listFilmByPage(@RequestParam Integer pageNum){
+        System.out.println("SecurityUtil.getUserId() = " + SecurityUtil.getUserId());
         return CommonResult.operateSuccess(filmService.listFilmByPage(pageNum));
     }
 
